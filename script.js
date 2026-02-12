@@ -242,8 +242,9 @@ document.addEventListener("keydown", (e) => {
 /* ===========
    Contact Form
 =========== */
-const form = $("#contactForm");
-const toast = $("#toast");
+
+const form = document.getElementById("contactForm");
+const toast = document.getElementById("toast");
 
 function setError(fieldName, message) {
   const el = document.querySelector(`[data-error-for="${fieldName}"]`);
@@ -254,38 +255,56 @@ function isEmailValid(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
+form.addEventListener("submit", function (e) {
 
-  const data = new FormData(form);
-  const name = String(data.get("name") || "").trim();
-  const email = String(data.get("email") || "").trim();
-  const budget = String(data.get("budget") || "").trim();
-  const message = String(data.get("message") || "").trim();
+  const name = form.name.value.trim();
+  const email = form.email.value.trim();
+  const budget = form.budget.value.trim();
+  const message = form.message.value.trim();
 
   let ok = true;
+
   setError("name", "");
   setError("email", "");
   setError("budget", "");
   setError("message", "");
 
-  if (name.length < 2) { setError("name", "Please enter your name."); ok = false; }
-  if (!isEmailValid(email)) { setError("email", "Please enter a valid email."); ok = false; }
-  if (!budget) { setError("budget", "Please choose a budget range."); ok = false; }
-  if (message.length < 10) { setError("message", "Please add a few details (at least 10 characters)."); ok = false; }
+  if (name.length < 2) {
+    setError("name", "Please enter your name.");
+    ok = false;
+  }
 
-  if (!ok) return;
+  if (!isEmailValid(email)) {
+    setError("email", "Please enter a valid email.");
+    ok = false;
+  }
 
-  // Demo success (replace with real integration)
+  if (!budget) {
+    setError("budget", "Please choose a budget.");
+    ok = false;
+  }
+
+  if (message.length < 10) {
+    setError("message", "Please provide more details.");
+    ok = false;
+  }
+
+  if (!ok) {
+    e.preventDefault(); // stop submission
+    return;
+  }
+
+  // Show success toast before redirect
   toast.hidden = false;
-  form.reset();
 
   setTimeout(() => {
     toast.hidden = true;
-  }, 3500);
+  }, 3000);
+
 });
 
 /* ===========
    Footer Year
 =========== */
 $("#year").textContent = new Date().getFullYear();
+
