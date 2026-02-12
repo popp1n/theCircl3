@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Panda Studio — Crafting Digital Experiences</title>
+  <meta name="description" content="Portfolio landing page with projects, testimonials, and contact form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Background blobs -->
+  <div class="bg-blobs" aria-hidden="true">
+    <span class="blob b1"></span>
+    <span class="blob b2"></span>
+    <span class="blob b3"></span>
+    <span class="blob b4"></span>
+  </div>
+
+  <!-- Header / Nav -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top" aria-label="Go to top">
+        <span class="brand-dot" aria-hidden="true"></span>
+        <span class="brand-text">PandaStudio</span>
+      </a>
+
+      <nav class="nav" aria-label="Primary navigation">
+        <a class="nav-link" href="#expertise">Expertise</a>
+        <a class="nav-link" href="#projects">Projects</a>
+        <a class="nav-link" href="#about">About</a>
+        <a class="nav-link" href="#testimonials">Testimonials</a>
+        <a class="nav-link" href="#contact">Contact</a>
+      </nav>
+
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-nav" id="mobileNav" hidden>
+      <a href="#expertise">Expertise</a>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#testimonials">Testimonials</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-badge">
+          <span class="badge-pill">⚡ Next-Gen Web & UI Designer</span>
+        </div>
+
+        <h1 class="hero-title">
+            Crafting Digital <span class="gradient-text">Experiences</span>
+        </h1>
+
+
+        <p class="hero-subtitle">
+          Specializing in creating modern, user-friendly websites for Kajabi, Squarespace, Wix, Shopify,
+          and more. Transforming your vision into a polished digital reality.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="btnViewWork" href="#projects">View My Work</a>
+          <a class="btn btn-ghost" id="btnGetInTouch" href="#contact">Get in Touch</a>
+        </div>
+
+        <div class="hero-stats" role="list" aria-label="Key stats">
+          <div class="stat" role="listitem">
+            <div class="stat-number">150+</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Years Experience</div>
+          </div>
+          <div class="stat" role="listitem">
+            <div class="stat-number">98%</div>
+            <div class="stat-label">Client Satisfaction</div>
+          </div>
+        </div>
+
+        <a class="scroll-cue" href="#expertise" aria-label="Scroll to next section">
+          <span class="scroll-dot" aria-hidden="true"></span>
+        </a>
+      </div>
+    </section>
+
+    <!-- EXPERTISE -->
+    <section class="section" id="expertise">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">EXPERTISE</div>
+          <h2 class="section-title">Platforms I Master</h2>
+          <p class="section-subtitle">
+            Each platform has its strengths. I use the best fit to build a site that looks great and works smoothly.
+          </p>
+        </div>
+
+        <div class="platforms">
+          <a class="platform-card" href="https://kajabi.com" target="_blank" rel="noreferrer">
+            <div class="platform-icon">⚙️</div>
+            <div class="platform-name">Kajabi</div>
+            <div class="platform-desc">Courses, funnels & memberships</div>
+          </a>
+
+          <a class="platform-card" href="https://www.shopify.com" target="_blank" rel="noreferrer">
+            <div class="platform-icon">🛒</div>
+            <div class="platform-name">Shopify</div>
+            <div class="platform-desc">E-commerce storefronts</div>
+          </a>
+
+          <a class="platform-card" href="https://www.wix.com" target="_blank" rel="noreferrer">
+            <div class="platform-icon">✨</div>
+            <div class="platform-name">Wix</div>
+            <div class="platform-desc">Modern websites & landing pages</div>
+          </a>
+
+          <a class="platform-card" href="https://www.squarespace.com" target="_blank" rel="noreferrer">
+            <div class="platform-icon">⬛</div>
+            <div class="platform-name">Squarespace</div>
+            <div class="platform-desc">Beautiful brand sites</div>
+          </a>
+
+          <a class="platform-card" href="https://www.framer.com" target="_blank" rel="noreferrer">
+            <div class="platform-icon">🧩</div>
+            <div class="platform-name">Framer</div>
+            <div class="platform-desc">Fast interactive marketing pages</div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <section class="section" id="projects">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">PORTFOLIO</div>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-subtitle">
+            A selection of projects across multiple niches and platforms.
+          </p>
+        </div>
+
+        <div class="filters" role="tablist" aria-label="Project filters">
+          <button class="chip is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+          <button class="chip" data-filter="kajabi" role="tab" aria-selected="false">Kajabi</button>
+          <button class="chip" data-filter="wix" role="tab" aria-selected="false">Wix</button>
+          <button class="chip" data-filter="shopify" role="tab" aria-selected="false">Shopify</button>
+          <button class="chip" data-filter="squarespace" role="tab" aria-selected="false">Squarespace</button>
+        </div>
+
+        <div class="grid" id="projectGrid" aria-label="Project gallery">
+          <!-- Cards are injected by JS -->
+        </div>
+
+        <div class="center">
+          <a class="btn btn-ghost" href="#contact">View All Projects</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section" id="about">
+      <div class="container about">
+        <div class="about-photo">
+          <!-- Replace this image with your own -->
+          <img
+            src="DSC_2812(1).jpg"
+            alt="Portrait photo"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="about-copy">
+          <div class="eyebrow">ABOUT</div>
+          <h2 class="section-title">Turning Ideas Into <span class="accent">Digital Reality</span></h2>
+          <p class="section-subtitle">
+            I’m passionate about creating websites that look great, feel effortless to use, and help you hit your goals.
+            From strategy to launch, I keep it simple, clear, and professional.
+          </p>
+
+          <div class="about-points">
+            <div class="point">
+              <div class="point-title">Client-First</div>
+              <div class="point-text">Clear process, transparent updates, and practical advice.</div>
+            </div>
+            <div class="point">
+              <div class="point-title">Clean Code</div>
+              <div class="point-text">Fast, responsive layouts with accessibility in mind.</div>
+            </div>
+            <div class="point">
+              <div class="point-title">Fast Delivery</div>
+              <div class="point-text">Efficient builds without sacrificing quality.</div>
+            </div>
+            <div class="point">
+              <div class="point-title">SEO Ready</div>
+              <div class="point-text">Solid structure that supports search visibility.</div>
+            </div>
+          </div>
+
+          <div class="about-actions">
+            <a class="btn btn-primary" href="#contact">Book a Call</a>
+            <a class="btn btn-ghost" href="#projects">See Work</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section section-dark" id="testimonials">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">TESTIMONIALS</div>
+          <h2 class="section-title">What Clients Say</h2>
+          <p class="section-subtitle">
+            Real feedback from real projects. (Replace with your own testimonials.)
+          </p>
+        </div>
+
+        <div class="testimonials">
+          <article class="t-card">
+            <div class="quote">“</div>
+            <p class="t-text">
+              The site looks premium and feels super easy to navigate. Everything was delivered on time with great communication.
+            </p>
+            <div class="t-meta">
+              <div class="t-name">Sarah Mitchell</div>
+              <div class="t-role">Founder, Online Academy</div>
+              <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="quote">“</div>
+            <p class="t-text">
+              Our conversion rate improved after the redesign. The layout, speed, and clarity are miles better.
+            </p>
+            <div class="t-meta">
+              <div class="t-name">James Roberts</div>
+              <div class="t-role">Marketing Director</div>
+              <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+          </article>
+
+          <article class="t-card">
+            <div class="quote">“</div>
+            <p class="t-text">
+              Beautiful work and very professional. The project gallery + contact flow is exactly what we needed.
+            </p>
+            <div class="t-meta">
+              <div class="t-name">Emily Chen</div>
+              <div class="t-role">Wellness Coach</div>
+              <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section" id="contact">
+      <div class="container contact">
+        <div class="contact-left">
+          <div class="eyebrow">LET’S CONNECT</div>
+          <h2 class="section-title">Ready to Start Your Project?</h2>
+          <p class="section-subtitle">
+            Share a little about what you’re building. I’ll reply with next steps and a simple plan.
+          </p>
+
+          <div class="contact-bullets">
+            <div class="cb">
+              <span class="cb-ico">✉️</span>
+              <span>Email me: <a href="mailto:mademola421@gmail.com">mademola421@gmail.com</a></span>
+            </div>
+            <div class="cb">
+              <span class="cb-ico">📞</span>
+              <span>Book a call: <a href="tel:07035028990" id="bookCallLink">+2347035028990</a></span>
+            </div>
+            <div class="cb">
+              <span class="cb-ico">📍</span>
+              <span>Remote worldwide (timezone-friendly)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-right">
+          <div class="form-card">
+            <h3 class="form-title">Send a Message</h3>
+            <p class="form-subtitle">I’ll get back to you within 1–2 business days.</p>
+
+            <form id="contactForm" novalidate>
+              <div class="field">
+                <label for="name">Your Name</label>
+                <input id="name" name="name" type="text" placeholder="Full name" required />
+                <small class="error" data-error-for="name"></small>
+              </div>
+
+              <div class="field">
+                <label for="email">Email Address</label>
+                <input id="email" name="email" type="email" placeholder="you@email.com" required />
+                <small class="error" data-error-for="email"></small>
+              </div>
+
+              <div class="field">
+                <label for="budget">Select Budget</label>
+                <select id="budget" name="budget" required>
+                  <option value="">Choose…</option>
+                  <option value="500-1000">$500–$1,000</option>
+                  <option value="1000-3000">$1,000–$3,000</option>
+                  <option value="3000-7000">$3,000–$7,000</option>
+                  <option value="7000+">$7,000+</option>
+                </select>
+                <small class="error" data-error-for="budget"></small>
+              </div>
+
+              <div class="field">
+                <label for="message">Project Details</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell me what you need…" required></textarea>
+                <small class="error" data-error-for="message"></small>
+              </div>
+
+              <button class="btn btn-primary btn-full" type="submit">
+                Send Message
+              </button>
+
+              <div class="toast" id="toast" role="status" aria-live="polite" hidden>
+                ✅ Message sent (demo). Hook this to a backend or Formspree/Netlify Forms.
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+      <div class="container footer-inner">
+        <div class="footer-brand">
+          <div class="brand-row">
+            <span class="brand-dot" aria-hidden="true"></span>
+            <span class="brand-text">PandaStudio</span>
+          </div>
+          <p class="footer-note">Building modern websites with clarity, speed, and style.</p>
+        </div>
+
+        <div class="footer-cols">
+          <div class="f-col">
+            <div class="f-title">Services</div>
+            <a href="#projects">Web Design</a>
+            <a href="#projects">Landing Pages</a>
+            <a href="#projects">E-commerce</a>
+            <a href="#projects">Course Sites</a>
+          </div>
+
+          <div class="f-col">
+            <div class="f-title">Company</div>
+            <a href="#about">About</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#contact">Contact</a>
+          </div>
+
+          <div class="f-col">
+            <div class="f-title">Social</div>
+            <a href="https://www.linkedin.com" target="_blank" rel="noreferrer">LinkedIn</a>
+            <a href="https://www.instagram.com" target="_blank" rel="noreferrer">Instagram</a>
+            <a href="https://www.behance.net" target="_blank" rel="noreferrer">Behance</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="container footer-bottom">
+        <span>© <span id="year"></span> PandaStudio. All rights reserved.</span>
+        <a href="#top" class="back-to-top">Back to top ↑</a>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Project Modal -->
+  <div class="modal" id="projectModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="true"></div>
+    <div class="modal-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" aria-label="Close modal" data-close="true">✕</button>
+      <div class="modal-media">
+        <img id="modalImg" alt="" />
+      </div>
+      <div class="modal-body">
+        <div class="modal-pill" id="modalTag"></div>
+        <h3 class="modal-title" id="modalTitle"></h3>
+        <p class="modal-desc" id="modalDesc"></p>
+        <div class="modal-actions">
+          <a class="btn btn-primary" id="modalVisit" href="#" target="_blank" rel="noreferrer">Visit Project</a>
+          <button class="btn btn-ghost" data-close="true">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
