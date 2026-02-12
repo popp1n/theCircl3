@@ -297,40 +297,57 @@
             <h3 class="form-title">Send a Message</h3>
             <p class="form-subtitle">I’ll get back to you within 1–2 business days.</p>
 
-            <form id="contactForm" novalidate>
-              <div class="field">
-                <label for="name">Your Name</label>
-                <input id="name" name="name" type="text" placeholder="Full name" required />
-                <small class="error" data-error-for="name"></small>
-              </div>
+           
 
-              <div class="field">
-                <label for="email">Email Address</label>
-                <input id="email" name="email" type="email" placeholder="you@email.com" required />
-                <small class="error" data-error-for="email"></small>
-              </div>
+              <form id="contactForm"
+      action="https://formsubmit.co/mademola421@gmail.com"
+      method="POST">
 
-              <div class="field">
-                <label for="budget">Select Budget</label>
-                <select id="budget" name="budget" required>
-                  <option value="">Choose…</option>
-                  <option value="500-1000">$500–$1,000</option>
-                  <option value="1000-3000">$1,000–$3,000</option>
-                  <option value="3000-7000">$3,000–$7,000</option>
-                  <option value="7000+">$7,000+</option>
-                </select>
-                <small class="error" data-error-for="budget"></small>
-              </div>
+  <!-- FormSubmit Settings -->
+  <input type="hidden" name="_subject" value="New Website Inquiry">
+  <input type="hidden" name="_captcha" value="false">
+  <input type="hidden" name="_template" value="table">
 
-              <div class="field">
-                <label for="message">Project Details</label>
-                <textarea id="message" name="message" rows="5" placeholder="Tell me what you need…" required></textarea>
-                <small class="error" data-error-for="message"></small>
-              </div>
+  <div class="field">
+    <label for="name">Your Name</label>
+    <input id="name" name="name" type="text" placeholder="Full name" required>
+    <small class="error" data-error-for="name"></small>
+  </div>
 
-              <button class="btn btn-primary btn-full" type="submit">
-                Send Message
-              </button>
+  <div class="field">
+    <label for="email">Email Address</label>
+    <input id="email" name="email" type="email" placeholder="you@email.com" required>
+    <small class="error" data-error-for="email"></small>
+  </div>
+
+  <div class="field">
+    <label for="budget">Select Budget</label>
+    <select id="budget" name="budget" required>
+      <option value="">Choose…</option>
+      <option value="$500–$1,000">$500–$1,000</option>
+      <option value="$1,000–$3,000">$1,000–$3,000</option>
+      <option value="$3,000–$7,000">$3,000–$7,000</option>
+      <option value="$7,000+">$7,000+</option>
+    </select>
+    <small class="error" data-error-for="budget"></small>
+  </div>
+
+  <div class="field">
+    <label for="message">Project Details</label>
+    <textarea id="message" name="message" rows="5"
+      placeholder="Tell me what you need…" required></textarea>
+    <small class="error" data-error-for="message"></small>
+  </div>
+
+  <button class="btn btn-primary btn-full" type="submit">
+    Send Message
+  </button>
+
+  <div class="toast" id="toast" hidden>
+    ✅ Message sent successfully!
+  </div>
+
+</form>
 
               <div class="toast" id="toast" role="status" aria-live="polite" hidden>
                 ✅ Message sent (demo). Hook this to a backend or Formspree/Netlify Forms.
