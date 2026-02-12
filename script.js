@@ -260,6 +260,7 @@ form.addEventListener("submit", function (e) {
   const name = form.name.value.trim();
   const email = form.email.value.trim();
   const budget = form.budget.value.trim();
+  const budget = form.platform.value.trim();
   const message = form.message.value.trim();
 
   let ok = true;
@@ -267,6 +268,7 @@ form.addEventListener("submit", function (e) {
   setError("name", "");
   setError("email", "");
   setError("budget", "");
+  setError("platform", "");
   setError("message", "");
 
   if (name.length < 2) {
