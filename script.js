@@ -1,3 +1,5 @@
+// script.js
+
 /* ===========
    Data
 =========== */
@@ -88,7 +90,7 @@ const projects = [
     subtitle: "Service website refresh",
     tag: "Kajabi",
     filter: "kajabi",
-    img: "https://images.unsplash.com/photo-1722094250550-4993fa28a51b?q=80&w=2072&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+    img: "https://images.unsplash.com/photo-1553877522-43269d4ea984?auto=format&fit=crop&w=1600&q=80",
     desc: "A calm, client-friendly layout with a simple services flow and clear booking next steps.",
     link: "https://example.com"
   }
@@ -121,12 +123,50 @@ $$(".mobile-nav a").forEach(a => {
 });
 
 /* ===========
+   Cinematic Parallax Blobs
+=========== */
+const blobs = $$(".blob");
+let mouseX = 0, mouseY = 0;
+let currentX = 0, currentY = 0;
+
+// mouse parallax
+window.addEventListener("mousemove", (e) => {
+  mouseX = (e.clientX / window.innerWidth - 0.5) * 2;  // -1..1
+  mouseY = (e.clientY / window.innerHeight - 0.5) * 2; // -1..1
+}, { passive: true });
+
+// device tilt (mobile) - optional
+window.addEventListener("deviceorientation", (e) => {
+  if (typeof e.beta !== "number" || typeof e.gamma !== "number") return;
+  // clamp to reasonable range
+  const gx = Math.max(-20, Math.min(20, e.gamma));
+  const by = Math.max(-20, Math.min(20, e.beta));
+  mouseX = (gx / 20);
+  mouseY = (by / 20);
+}, { passive: true });
+
+function animateParallax() {
+  // smooth follow
+  currentX += (mouseX - currentX) * 0.06;
+  currentY += (mouseY - currentY) * 0.06;
+
+  blobs.forEach((blob) => {
+    const depth = Number(blob.dataset.depth || 0.06);
+    const x = currentX * depth * 60; // px
+    const y = currentY * depth * 60;
+    blob.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+
+  requestAnimationFrame(animateParallax);
+}
+animateParallax();
+
+/* ===========
    Projects Render
 =========== */
 const grid = $("#projectGrid");
 
 function spanClass(i) {
-  // A simple pattern to mimic the mixed card sizes in your screenshot.
   const pattern = ["span-6", "span-6", "span-4", "span-8", "span-6", "span-6", "span-4", "span-8", "span-6", "span-6"];
   return pattern[i % pattern.length] || "span-6";
 }
@@ -217,7 +257,6 @@ function openModal(project) {
   modal.setAttribute("aria-hidden", "false");
   document.body.style.overflow = "hidden";
 
-  // focus close button for accessibility
   const closeBtn = modal.querySelector("[data-close='true']");
   closeBtn && closeBtn.focus();
 }
@@ -240,9 +279,34 @@ document.addEventListener("keydown", (e) => {
 });
 
 /* ===========
-   Contact Form
+   Reveal on load + on scroll
 =========== */
+const revealEls = document.querySelectorAll(".reveal");
 
+window.addEventListener("load", () => {
+  revealEls.forEach((el) => {
+    if (el.getBoundingClientRect().top < window.innerHeight * 0.95) {
+      const delay = Number(el.dataset.delay || 0);
+      setTimeout(() => el.classList.add("is-visible"), delay);
+    }
+  });
+});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const el = entry.target;
+    const delay = Number(el.dataset.delay || 0);
+    setTimeout(() => el.classList.add("is-visible"), delay);
+    observer.unobserve(el);
+  });
+}, { threshold: 0.15 });
+
+revealEls.forEach((el) => observer.observe(el));
+
+/* ===========
+   Contact Form (validate, then send via FormSubmit)
+=========== */
 const form = document.getElementById("contactForm");
 const toast = document.getElementById("toast");
 
@@ -255,54 +319,43 @@ function isEmailValid(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-form.addEventListener("submit", function (e) {
+if (form) {
+  form.addEventListener("submit", function (e) {
+    const name = form.name.value.trim();
+    const email = form.email.value.trim();
+    const budget = form.budget.value.trim();
+    const platform = form.platform.value.trim();
+    const message = form.message.value.trim();
 
-  const name = form.name.value.trim();
-  const email = form.email.value.trim();
-  const budget = form.budget.value.trim();
-  const message = form.message.value.trim();
+    let ok = true;
 
-  let ok = true;
+    setError("name", "");
+    setError("email", "");
+    setError("budget", "");
+    setError("platform", "");
+    setError("message", "");
 
-  setError("name", "");
-  setError("email", "");
-  setError("budget", "");
-  setError("platform", "");
-  setError("message", "");
+    if (name.length < 2) { setError("name", "Please enter your name."); ok = false; }
+    if (!isEmailValid(email)) { setError("email", "Please enter a valid email."); ok = false; }
+    if (!budget) { setError("budget", "Please choose a budget."); ok = false; }
+    if (!platform) { setError("platform", "Please choose a platform."); ok = false; }
+    if (message.length < 10) { setError("message", "Please provide more details."); ok = false; }
 
-  if (name.length < 2) {
-    setError("name", "Please enter your name.");
-    ok = false;
-  }
+    if (!ok) {
+      e.preventDefault();
+      return;
+    }
 
-  if (!isEmailValid(email)) {
-    setError("email", "Please enter a valid email.");
-    ok = false;
-  }
+    // Show toast briefly (form will submit normally after this)
+    toast.hidden = false;
 
-  if (!budget) {
-    setError("budget", "Please choose a budget.");
-    ok = false;
-  }
-
-  if (message.length < 10) {
-    setError("message", "Please provide more details.");
-    ok = false;
-  }
-
-  if (!ok) {
-    e.preventDefault(); // stop submission
-    return;
-  }
-
-  // Show success toast before redirect
-  toast.hidden = false;
-
-  setTimeout(() => {
-    toast.hidden = true;
-  }, 3000);
-
-});
+    // Optional: small delay so user sees the toast before navigation
+    e.preventDefault();
+    setTimeout(() => {
+      form.submit();
+    }, 500);
+  });
+}
 
 /* ===========
    Footer Year
